@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployement
+  labels:
+    project: roboshop
+    app: db
+    service: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: roboshop
+      app: db
+      service: mongodb
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        app: db
+        service: mongodb
+    spec:
+      containers:
+      - name: nginx
+        image: saivinaylt/mongodb:k8
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb-service
+  namespace: roboshop
+  labels:
+    project: roboshop
+    app: db
+    service: mongodb
+spec:
+  selector:
+    project: roboshop
+    app: db
+    service: mongodb
+  ports:
+  - name: mongo-port
+    protocol: tcp
+    port: 27017
+    target: 27017
+
+
