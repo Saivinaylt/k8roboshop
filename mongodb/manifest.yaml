@@ -41,9 +41,9 @@ spec:
     app: db
     service: mongodb
   ports:
-  - name: mongo-port
-    protocol: tcp
-    port: 27017
-    target: 27017
+    - name: mongo-port
+      protocol: tcp
+      port: 27017
+      target: 27017
 
 
