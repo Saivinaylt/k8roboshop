@@ -24,26 +24,6 @@ spec:
       - name: nginx
         image: saivinaylt/mongodb:k8
 
----
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb-service
-  namespace: roboshop
-  labels:
-    project: roboshop
-    app: db
-    service: mongodb
-spec:
-  selector:
-    project: roboshop
-    app: db
-    service: mongodb
-  ports:
-    - name: mongo-port
-      protocol: tcp
-      port: 27017
-      target: 27017
 
 
