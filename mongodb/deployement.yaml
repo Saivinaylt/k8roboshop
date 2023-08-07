@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployement
+metadata:
+  namespace: roboshop
+  name: mongodbdeployement
+  labels:
+    name: mongodb-deployement
+    course: terraform
+spec:
+  repliacs: 1
+  selector:
+    matchLabesl:
+      course: terraform
+      kind: deployement
+  template:
+    metadata:
+      labels:
+        course: terraform
+        kind: deployement
+    spec:
+      containers:
+      - image: mongodb
+        name: mongodb
+---
+
+spec:
+  replicas: 1
+  selector:
+    matchLabel:
+      project: roboshop
+      app: db
+      service: mongodb
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        app: db
+        service: mongodb
+    spec:
+      containers:
+      - name: nginx
+        image: saivinaylt/mongodb:k8
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: roboshop
+  labels:
+    course: terraform
+    kind: deployement
+spec:
+  type: loadBalancer
+  selector:
+    course: terraform
+    kind: deployement
+  ports:
+  - name: mongodb-port
+    protocol: TCP
+    port: 20107
+    targetPort: 20107
+
+
+
+  
