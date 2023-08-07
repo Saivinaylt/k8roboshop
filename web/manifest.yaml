@@ -23,6 +23,7 @@ spec:
     spec:
       containers:
       - name: web
+        imagePullPolicy: Always
         image: saivinaylt/web:k8
 
 ---
