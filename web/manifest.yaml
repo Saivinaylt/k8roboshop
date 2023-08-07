@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: roboshop
+  name: web-deployement
+  labels:
+    project: roboshop
+    app: db
+    service: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: roboshop
+      app: db
+      service: web
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        app: db
+        service: web
+    spec:
+      containers:
+      - name: web
+        image: saivinaylt/web:k8
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: roboshop
+  name: my-service
+  labels:
+    project: roboshop
+    app: db
+    service: web
+spec
+  type: LoadBalancer
+  selector:
+    project: roboshop
+    app: db
+    service: web
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: mongo-port 
+
+
