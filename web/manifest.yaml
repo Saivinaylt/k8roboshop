@@ -35,7 +35,7 @@ metadata:
     project: roboshop
     app: db
     service: web
-spec
+spec:
   type: LoadBalancer
   selector:
     project: roboshop
