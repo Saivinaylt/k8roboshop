@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
-  namespace: roboshop
+  namespace: saivinay
   labels:
     app: redis
     tier: DB
@@ -29,7 +29,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis
-  namespace: roboshop
+  namespace: saivinay
   labels:
     app: redis
     tier: DB
